@@ -1,0 +1,17 @@
+name: bookstore
+
+networks:
+  internal_net:
+    driver: bridge
+
+services:
+  database:
+    image: postgres:17.0
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=$DATABASE_USER
+      - POSTGRES_PASSWORD=$DATABASE_PASSWORD
+      - POSTGRES_DB=$DATABASE_NAME
+    networks:
+      - internal_net

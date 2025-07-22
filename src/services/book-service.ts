@@ -69,7 +69,9 @@ class BookService {
   static async listAllBooks(): Promise<Book[]> {
     const prisma = new PrismaClient({
       omit: {
-        user: { password: true },
+        user: {
+          password: true,
+        },
       },
     });
 
