@@ -1,6 +1,7 @@
 import "dotenv/config";
 
 import express from "express";
+import cors from "cors";
 
 import userRouter from "./routes/user-router";
 import healthRouter from "./routes/health-routes";
@@ -16,6 +17,11 @@ const port = process.env.PORT || 3333;
 const app = express();
 
 app.use(express.json());
+app.use(
+  cors({
+    origin: ["http://localhost:3000"],
+  })
+);
 
 app.use(requestLogger);
 app.use(healthRouter);
