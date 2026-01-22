@@ -16,7 +16,6 @@ export async function listUsers(request: Request, response: Response) {
 }
 
 export async function getUser(request: Request, response: Response) {
-  // middlewares, who to use?
   const GetUserSchema = zod.object({
     user_id: zod.uuidv4({ error: "the user id must be a valid UUID" }),
   });
@@ -100,4 +99,103 @@ export async function createUser(request: Request, response: Response) {
   });
 
   return response.status(201).json(user);
+}
+
+export async function updateUser(request: Request, response: Response) {
+  const { data: userId, ...userIdValidation } = zod
+    .uuidv4({ error: "the user id must be a valid UUID" })
+    .safeParse(request.params.user_id);
+
+  if (!userIdValidation.success) {
+    return response
+      .status(400)
+      .json({ errors: userIdValidation.error.issues.map((p) => p.message) });
+  }
+
+  const UpdateUserSchema = zod.object({
+    name: zod
+      .string()
+      .min(2, { error: "the user name must have at least 2 characters" })
+      .max(32, { error: "the user name must have less than 32 characters" }),
+    surname: zod
+      .string()
+      .min(2, { error: "the surname must have at least 2 characters" })
+      .max(40, { error: "the surname must have less than 40 characters" }),
+    email: zod.email({ error: "the user email must be a valid email address" }),
+  });
+
+  const { data: userPayload, ...userPayloadValidation } =
+    UpdateUserSchema.safeParse(request.body);
+
+  if (!userPayloadValidation.success) {
+    return response.status(400).json({
+      errors: userPayloadValidation.error.issues.map((p) => p.message),
+    });
+  }
+
+  const prisma = getPrismaClient();
+
+  const foundUser = await prisma.user.findUnique({
+    where: { id: userId! },
+  });
+
+  if (!foundUser) {
+    return response.status(404).json({
+      errors: ["user was not found"],
+    });
+  }
+
+  const updatedUser = await prisma.user.update({
+    where: {
+      id: userId!,
+    },
+    data: {
+      name: userPayload!.name,
+      surname: userPayload!.surname,
+      email: userPayload!.email,
+    },
+    omit: {
+      password: true,
+    },
+  });
+
+  return response.status(200).json(updatedUser);
+}
+
+export async function deleteUser(request: Request, response: Response) {
+  const {
+    success,
+    error,
+    data: userId,
+  } = zod
+    .uuidv4({ error: "the user id must be a valid UUID" })
+    .safeParse(request.params.user_id);
+
+  if (!success) {
+    return response
+      .status(400)
+      .json({ errors: error.issues.map((p) => p.message) });
+  }
+
+  const prisma = getPrismaClient();
+
+  const foundUser = await prisma.user.findUnique({
+    where: {
+      id: userId,
+    },
+  });
+
+  if (!foundUser) {
+    return response.status(404).json({
+      errors: ["user not found"],
+    });
+  }
+
+  await prisma.user.delete({
+    where: {
+      id: userId,
+    },
+  });
+
+  return response.status(204).send();
 }

@@ -17,8 +17,47 @@ model User {
   id       String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name     String @db.VarChar(32)
   surname  String @db.VarChar(40)
-  email    String @db.VarChar(255) @unique
+  email    String @unique @db.VarChar(255)
   password String @db.VarChar(255)
+  books    Book[]
 
   @@map("users")
+}
+
+model Book {
+  id      String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  title   String @db.VarChar(56)
+  summary String @db.VarChar(255)
+  year    Int
+  pages   Int
+  isbn    String @unique @db.Char(13)
+
+  author_id String @db.Uuid
+  author    User   @relation(fields: [author_id], references: [id])
+
+  publisher_id String    @db.Uuid
+  publisher    Publisher @relation(fields: [publisher_id], references: [id])
+
+  category_id String   @db.Uuid
+  category    Category @relation(fields: [category_id], references: [id])
+
+  @@map("books")
+}
+
+model Category {
+  id    String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name  String @db.VarChar(32)
+  books Book[]
+
+  @@map("categories")
+}
+
+model Publisher {
+  id        String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name      String @db.VarChar(32)
+  address   String @db.VarChar(255)
+  cellphone String @db.VarChar(24)
+  books     Book[]
+
+  @@map("publishers")
 }
