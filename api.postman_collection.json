@@ -1,0 +1,552 @@
+{
+  "info": {
+    "_postman_id": "b5dc55c1-7c8d-4b78-a101-9c9a6f90f44b",
+    "name": "api",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "44247225",
+    "_collection_link": "https://go.postman.co/collection/44247225-b5dc55c1-7c8d-4b78-a101-9c9a6f90f44b?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "health",
+      "item": [
+        {
+          "name": "health check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{API_BASE_URL}}/api/health",
+              "host": [
+                "{{API_BASE_URL}}"
+              ],
+              "path": [
+                "api",
+                "health"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get log",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{API_BASE_URL}}/api/logs/:log_id",
+              "host": [
+                "{{API_BASE_URL}}"
+              ],
+              "path": [
+                "api",
+                "logs",
+                ":log_id"
+              ],
+              "variable": [
+                {
+                  "key": "log_id",
+                  "value": "292280a0-8d9f-4d4d-a244-444e6cc98fba"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "sessions",
+      "item": [
+        {
+          "name": "create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin2@email.com\",\n  \"password\": \"123123123(*(*(\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_BASE_URL}}/api/sessions",
+              "host": [
+                "{{API_BASE_URL}}"
+              ],
+              "path": [
+                "api",
+                "sessions"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "users",
+      "item": [
+        {
+          "name": "create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"admin\",\n    \"surname\": \"admin\",\n    \"email\": \"admin2@email.com\",\n    \"password\": \"123123123(*(*(\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_BASE_URL}}/api/users",
+              "host": [
+                "{{API_BASE_URL}}"
+              ],
+              "path": [
+                "api",
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "list",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{API_BASE_URL}}/api/users",
+              "host": [
+                "{{API_BASE_URL}}"
+              ],
+              "path": [
+                "api",
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{API_BASE_URL}}/api/users/:user_id",
+              "host": [
+                "{{API_BASE_URL}}"
+              ],
+              "path": [
+                "api",
+                "users",
+                ":user_id"
+              ],
+              "variable": [
+                {
+                  "key": "user_id",
+                  "value": "7a435611-cf40-4437-8ed7-e13c604e4a2f"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{API_BASE_URL}}/api/users/:user_id",
+              "host": [
+                "{{API_BASE_URL}}"
+              ],
+              "path": [
+                "api",
+                "users",
+                ":user_id"
+              ],
+              "variable": [
+                {
+                  "key": "user_id",
+                  "value": "efbad210-6cf6-4516-99ec-26226a18451b"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"admin\",\n    \"surname\": \"adminho\",\n    \"email\": \"admin4@email.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_BASE_URL}}/api/users/:user_id",
+              "host": [
+                "{{API_BASE_URL}}"
+              ],
+              "path": [
+                "api",
+                "users",
+                ":user_id"
+              ],
+              "variable": [
+                {
+                  "key": "user_id",
+                  "value": "7a435611-cf40-4437-8ed7-e13c604e4a2f"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "books",
+      "item": [
+        {
+          "name": "list",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_ACCESS_TOKEN}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{API_BASE_URL}}/api/books?include_author=true&include_publisher=true&include_category=true",
+              "host": [
+                "{{API_BASE_URL}}"
+              ],
+              "path": [
+                "api",
+                "books"
+              ],
+              "query": [
+                {
+                  "key": "include_author",
+                  "value": "true"
+                },
+                {
+                  "key": "include_publisher",
+                  "value": "true"
+                },
+                {
+                  "key": "include_category",
+                  "value": "true"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{API_BASE_URL}}/api/books/:book_id",
+              "host": [
+                "{{API_BASE_URL}}"
+              ],
+              "path": [
+                "api",
+                "books",
+                ":book_id"
+              ],
+              "query": [
+                {
+                  "key": "include_author",
+                  "value": "true",
+                  "disabled": true
+                },
+                {
+                  "key": "include_publisher",
+                  "value": "true",
+                  "disabled": true
+                },
+                {
+                  "key": "include_category",
+                  "value": "true",
+                  "disabled": true
+                }
+              ],
+              "variable": [
+                {
+                  "key": "book_id",
+                  "value": "ab30b9b3-d458-4a1a-ae87-2cb0db9deea2"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{API_BASE_URL}}/api/books/:book_id",
+              "host": [
+                "{{API_BASE_URL}}"
+              ],
+              "path": [
+                "api",
+                "books",
+                ":book_id"
+              ],
+              "variable": [
+                {
+                  "key": "book_id",
+                  "value": "21d1542f-88a7-4f95-bf75-7283f6c8dd4a"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_ACCESS_TOKEN}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Sample Book Title\",\n  \"summary\": \"This is a sample summary for the book, describing its content in detail.\",\n  \"year\": 2021,\n  \"pages\": 320,\n  \"isbn\": \"9781234567891\",\n  \"author_id\": \"7a435611-cf40-4437-8ed7-e13c604e4a2f\",\n  \"publisher_id\": \"cf9699f2-9aed-43a8-94e4-b45f212d35a4\",\n  \"category_id\": \"1db169c8-b4fb-4f82-a31e-64977cea5158\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_BASE_URL}}/api/books",
+              "host": [
+                "{{API_BASE_URL}}"
+              ],
+              "path": [
+                "api",
+                "books"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Sample Book Title 222\",\n  \"summary\": \"This is a sample summary for the book, describing its content in detail.\",\n  \"year\": 2021,\n  \"pages\": 320,\n  \"isbn\": \"9781234567890\",\n  \"author_id\": \"7a435611-cf40-4437-8ed7-e13c604e4a2f\",\n  \"publisher_id\": \"cf9699f2-9aed-43a8-94e4-b45f212d35a4\",\n  \"category_id\": \"1db169c8-b4fb-4f82-a31e-64977cea5158\",\n  \"author\": {\n    \"id\": \"7a435611-cf40-4437-8ed7-e13c604e4a2f\",\n    \"name\": \"admin\",\n    \"surname\": \"adminho\",\n    \"email\": \"admin4@email.com\"\n  },\n  \"publisher\": {\n    \"id\": \"cf9699f2-9aed-43a8-94e4-b45f212d35a4\",\n    \"name\": \"RECORD LTDA\",\n    \"address\": \"Rua Argentina, 171 - Rio de Janeiro, RJ\",\n    \"cellphone\": \"552125852000\"\n  },\n  \"category\": {\n    \"id\": \"1db169c8-b4fb-4f82-a31e-64977cea5158\",\n    \"name\": \"Adventure\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_BASE_URL}}/api/books/:book_id",
+              "host": [
+                "{{API_BASE_URL}}"
+              ],
+              "path": [
+                "api",
+                "books",
+                ":book_id"
+              ],
+              "variable": [
+                {
+                  "key": "book_id",
+                  "value": "21d1542f-88a7-4f95-bf75-7283f6c8dd4a"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "categories",
+      "item": [
+        {
+          "name": "list",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{API_BASE_URL}}/api/categories",
+              "host": [
+                "{{API_BASE_URL}}"
+              ],
+              "path": [
+                "api",
+                "categories"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{API_BASE_URL}}/api/categories/:category_id",
+              "host": [
+                "{{API_BASE_URL}}"
+              ],
+              "path": [
+                "api",
+                "categories",
+                ":category_id"
+              ],
+              "variable": [
+                {
+                  "key": "category_id",
+                  "value": "c7c84349-29ae-448e-98ef-7cf418d3fef3"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Adventure\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_BASE_URL}}/api/categories",
+              "host": [
+                "{{API_BASE_URL}}"
+              ],
+              "path": [
+                "api",
+                "categories"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "publishers",
+      "item": [
+        {
+          "name": "list",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{API_BASE_URL}}/api/publishers",
+              "host": [
+                "{{API_BASE_URL}}"
+              ],
+              "path": [
+                "api",
+                "publishers"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{API_BASE_URL}}/api/publishers/:publisher_id",
+              "host": [
+                "{{API_BASE_URL}}"
+              ],
+              "path": [
+                "api",
+                "publishers",
+                ":publisher_id"
+              ],
+              "variable": [
+                {
+                  "key": "publisher_id",
+                  "value": "9bce37d6-cd95-4d3d-a6c2-74e4c2e926ae"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"RECORD LTDA\",\n  \"address\": \"Rua Argentina, 171 - Rio de Janeiro, RJ\",\n  \"cellphone\": \"552125852000\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_BASE_URL}}/api/publishers",
+              "host": [
+                "{{API_BASE_URL}}"
+              ],
+              "path": [
+                "api",
+                "publishers"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

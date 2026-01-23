@@ -1,10 +1,10 @@
 - [x] GET /api/health OK
 - [ ] POST /api/session
 
-- [ ] POST /api/users
+- [x] POST /api/users
 - [x] GET /api/users
 - [x] GET /api/users/:id
-- [ ] PUT /api/users/:id
+- [x] PUT /api/users/:id
 - [x] DELETE /api/users/:id
 
 - [x] GET /api/books

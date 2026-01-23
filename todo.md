@@ -1,0 +1,4 @@
+- [x] User password hash
+- [x] Session with JWT
+- [ ] Containerize app
+- [ ] Swagger

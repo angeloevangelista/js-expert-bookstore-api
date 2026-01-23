@@ -1,4 +1,5 @@
 import * as zod from "zod";
+import bcrypt from "bcrypt";
 import { Request, Response } from "express";
 
 import getPrismaClient from "../prisma";
@@ -86,12 +87,14 @@ export async function createUser(request: Request, response: Response) {
     });
   }
 
+  const hashedPassword = await bcrypt.hash(data.password, 12);
+
   const user = await prisma.user.create({
     data: {
       name: data.name,
       surname: data.surname,
       email: data.email,
-      password: data.password,
+      password: hashedPassword,
     },
     omit: {
       password: true,

@@ -8,6 +8,8 @@ import booksRouter from "./routes/books";
 import usersRouter from "./routes/users";
 import categoriesRouter from "./routes/categories";
 import publishersRouter from "./routes/publishers";
+import sessionsRouter from "./routes/sessions";
+import authMiddleware from "./middlewares/auth-middleware";
 
 const PORT = Number(process.env.PORT);
 
@@ -20,7 +22,11 @@ const app = express();
 app.use(express.json());
 
 app.use(healthRouter);
+app.use(sessionsRouter);
 app.use(usersRouter);
+
+app.use(authMiddleware);
+
 app.use(categoriesRouter);
 app.use(publishersRouter);
 app.use(booksRouter);
