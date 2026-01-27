@@ -1,5 +1,6 @@
 import "dotenv/config";
 
+import cors from "cors";
 import crypto from "crypto";
 import express, { NextFunction, Request, Response } from "express";
 
@@ -19,6 +20,11 @@ if (!PORT) {
 
 const app = express();
 
+app.use(
+  cors({
+    origin: "*",
+  }),
+);
 app.use(express.json());
 
 app.use(healthRouter);
