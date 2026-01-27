@@ -3,13 +3,13 @@ import "dotenv/config";
 import crypto from "crypto";
 import express, { NextFunction, Request, Response } from "express";
 
-import healthRouter from "./routes/health";
-import booksRouter from "./routes/books";
-import usersRouter from "./routes/users";
-import categoriesRouter from "./routes/categories";
-import publishersRouter from "./routes/publishers";
-import sessionsRouter from "./routes/sessions";
-import authMiddleware from "./middlewares/auth-middleware";
+import healthRouter from "./routes/health.js";
+import booksRouter from "./routes/books.js";
+import usersRouter from "./routes/users.js";
+import categoriesRouter from "./routes/categories.js";
+import publishersRouter from "./routes/publishers.js";
+import sessionsRouter from "./routes/sessions.js";
+import authMiddleware from "./middlewares/auth-middleware.js";
 
 const PORT = Number(process.env.PORT);
 

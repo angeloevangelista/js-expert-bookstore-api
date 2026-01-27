@@ -1,7 +1,7 @@
 import * as zod from "zod";
 import { Request, Response } from "express";
 
-import getPrismaClient from "../prisma";
+import getPrismaClient from "../prisma/index.js";
 
 export async function listPublishers(request: Request, response: Response) {
   const prisma = getPrismaClient();

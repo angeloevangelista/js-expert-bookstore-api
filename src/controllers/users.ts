@@ -2,7 +2,7 @@ import * as zod from "zod";
 import bcrypt from "bcrypt";
 import { Request, Response } from "express";
 
-import getPrismaClient from "../prisma";
+import getPrismaClient from "../prisma/index.js";
 
 export async function listUsers(request: Request, response: Response) {
   const prisma = getPrismaClient();

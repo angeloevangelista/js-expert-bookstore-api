@@ -3,7 +3,7 @@ import {
   createPublisher,
   deletePublisher,
   listPublishers,
-} from "../controllers/publishers";
+} from "../controllers/publishers.js";
 
 const publishersRouter = Router();
 

@@ -2,7 +2,7 @@ import * as zod from "zod";
 import jwt from "jsonwebtoken";
 import { Request, Response } from "express";
 
-import getPrismaClient from "../prisma";
+import getPrismaClient from "../prisma/index.js";
 
 export async function listBooks(request: Request, response: Response) {
   const prisma = getPrismaClient();

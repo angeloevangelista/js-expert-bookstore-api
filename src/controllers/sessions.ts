@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { Request, Response } from "express";
 
-import getPrismaClient from "../prisma";
+import getPrismaClient from "../prisma/index.js";
 
 export async function createSession(request: Request, response: Response) {
   const CreateSessionSchema = zod.object({

@@ -6,8 +6,8 @@ import {
   getUser,
   listUsers,
   updateUser,
-} from "../controllers/users";
-import authMiddleware from "../middlewares/auth-middleware";
+} from "../controllers/users.js";
+import authMiddleware from "../middlewares/auth-middleware.js";
 
 const usersRouter = Router();
 
